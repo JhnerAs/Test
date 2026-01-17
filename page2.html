@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>More Memories</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ================= PAGE TRANSITION ================= */
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#111827,#020617);
+  font-family:Poppins,sans-serif;
+  color:#e5e7eb;
+  opacity:0;
+  animation:fadeIn .6s ease forwards;
+}
+
+body.fade-out{
+  animation:fadeOut .4s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes fadeOut{
+  from{opacity:1;}
+  to{opacity:0;transform:translateY(-20px);}
+}
+
+/* ================= HEADER ================= */
+header{
+  text-align:center;
+  padding:4rem 1rem 2rem;
+}
+
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;
+}
+
+/* ================= COLLAGE ================= */
+.collage{
+  max-width:1200px;
+  margin:auto;
+  padding:3rem 1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2.5rem;
+}
+
+/* ================= PHOTO ================= */
+.photo{
+  background:#fff;
+  padding:.75rem .75rem 1.4rem;
+  box-shadow:0 25px 50px rgba(0,0,0,.45);
+  transform:rotate(var(--r)) translateY(30px);
+  opacity:0;
+  animation:photoIn .9s ease forwards;
+  animation-delay:calc(var(--i) * .1s);
+  transition:transform .35s ease, box-shadow .35s ease;
+  cursor:pointer;
+}
+
+@keyframes photoIn{
+  to{opacity:1;transform:rotate(var(--r)) translateY(0);}
+}
+
+/* HOVER */
+.photo:hover{
+  transform:translateY(-12px) scale(1.06) rotate(0deg);
+  box-shadow:0 40px 90px rgba(0,0,0,.7);
+  z-index:10;
+}
+
+/* CLICK */
+.photo:active{
+  transform:scale(.96);
+}
+
+/* POP */
+.photo.pop{
+  animation:pop .35s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+.photo img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+.caption{
+  margin-top:.5rem;
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  color:#111;
+  font-size:.85rem;
+}
+
+/* ================= NAV ================= */
+.nav{
+  text-align:center;
+  padding:3rem;
+}
+
+.nav a{
+  background:#e5e7eb;
+  color:#111;
+  padding:.8rem 1.8rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:500;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>More Memories</h1>
+<p>Another page of moments</p>
+</header>
+
+<section class="collage">
+
+<div class="photo" style="--r:-7deg;--i:1">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/received_23889928284038867.jpeg">
+<div class="caption">Memory 10</div>
+</div>
+
+<div class="photo" style="--r:6deg;--i:2">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/received_886193453837712.jpeg">
+<div class="caption">Memory 11</div>
+</div>
+
+<div class="photo" style="--r:-5deg;--i:3">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/FB_IMG_1763216470200.jpg">
+<div class="caption">Memory 12</div>
+</div>
+
+<div class="photo" style="--r:8deg;--i:4">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/IMG_20240818_101113.jpg">
+<div class="caption">Memory 13</div>
+</div>
+
+<div class="photo" style="--r:-6deg;--i:5">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/IMG_20250708_163208.jpg">
+<div class="caption">Memory 14</div>
+</div>
+
+<div class="photo" style="--r:5deg;--i:6">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/IMG_20251225_214138.jpg">
+<div class="caption">Memory 15</div>
+</div>
+
+<div class="photo" style="--r:-4deg;--i:7">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/received_658088606932375.jpeg">
+<div class="caption">Memory 16</div>
+</div>
+
+<div class="photo" style="--r:9deg;--i:8">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/IMG_20251203_225449.jpg">
+<div class="caption">Memory 17</div>
+</div>
+
+<div class="photo" style="--r:-8deg;--i:9">
+<img src="https://raw.githubusercontent.com/JhnerAs/Util/main/Icons/IMG_20251202_095353.jpg">
+<div class="caption">Memory 18</div>
+</div>
+
+</section>
+
+<div class="nav">
+<a href="index.html">← Back</a>
+</div>
+
+<script>
+/* PAGE TRANSITION */
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",e=>{
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+    setTimeout(()=>location.href=link.href,400);
+  });
+});
+
+/* CLICK POP */
+document.querySelectorAll(".photo").forEach(photo=>{
+  photo.addEventListener("click",()=>{
+    photo.classList.remove("pop");
+    void photo.offsetWidth;
+    photo.classList.add("pop");
+  });
+});
+</script>
+
+</body>
+</html>
